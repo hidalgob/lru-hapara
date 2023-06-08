@@ -16,22 +16,21 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
-func (this *LRUCache) Put(key int, value int) {
-	this.cache[key] = value
-	this.keys = append(this.keys, key)
+func (c *LRUCache) Put(key int, value int) {
+	c.cache[key] = value
+	c.keys = append(c.keys, key)
 }
-
-func (this *LRUCache) Get(key int) int {
-	if val, ok := this.cache[key]; ok {
-		this.keys = append(this.keys, key)
+func (c *LRUCache) Get(key int) int {
+	if val, ok := c.cache[key]; ok {
+		c.keys = append(c.keys, key)
 		return val
 	}
 	return -1
 }
 
-func (this *LRUCache) Delete(key int) int {
-	if val, ok := this.cache[key]; ok {
-		delete(this.cache, key)
+func (c *LRUCache) Delete(key int) int {
+	if val, ok := c.cache[key]; ok {
+		delete(c.cache, key)
 		return val
 	}
 	return -1
