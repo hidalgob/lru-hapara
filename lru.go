@@ -27,9 +27,9 @@ func remove(slice []int, s int) []int {
 
 func (c *LRUCache) Put(key int, value int) {
 	if len(c.keys) >= c.capacity {
-		oldKey := c.keys[0]
+		oldestKey := c.keys[0]
 		c.keys = c.keys[1:]
-		delete(c.cache, oldKey)
+		delete(c.cache, oldestKey)
 	}
 	c.cache[key] = value
 	c.keys = append(c.keys, key)
