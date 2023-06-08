@@ -54,19 +54,51 @@ func (c *LRUCache) Delete(key int) int {
 
 func main() {
 	c := Constructor(2)
+	/*
+		c.Put(1, 1)
+		fmt.Println(c)
+		fmt.Println(c.Get(1))
+		c.Delete(1)
+		c.Put(2, 2)
+		fmt.Println(c)
+		c.Put(3, 3)
+		fmt.Println(c.Get(2))
+		fmt.Println(c.Get(2))
+		fmt.Println(c)
+		c.Put(4, 4)
+		fmt.Println(c.Get(2))
+		fmt.Println(c.Get(2))
+		fmt.Println(c)
+		fmt.Println("Exiting")
+	*/
+	// Testing
+
 	c.Put(1, 1)
-	fmt.Println(c)
-	fmt.Println(c.Get(1))
-	c.Delete(1)
 	c.Put(2, 2)
+	fmt.Println(c.Get(1)) // returns 1
+	c.Put(3, 3)           // evicts key 2
 	fmt.Println(c)
-	c.Put(3, 3)
-	fmt.Println(c.Get(2))
-	fmt.Println(c.Get(2))
+	fmt.Println(c.Get(2)) // returns -1 (not found)
+	c.Put(4, 4)           // evicts key 1
 	fmt.Println(c)
-	c.Put(4, 4)
-	fmt.Println(c.Get(2))
-	fmt.Println(c.Get(2))
+	fmt.Println(c.Get(1))    // returns -1 (not found)
+	fmt.Println(c.Get(3))    // returns 3
+	fmt.Println(c.Get(4))    // returns 4
+	fmt.Println(c.Delete(3)) // returns 3
 	fmt.Println(c)
-	fmt.Println("Exiting")
+	fmt.Println(c.Get(3)) // returns -1 (not found)
+
+	/*
+	   Output of testing the above on debugging session vscode
+	   1
+	   {2 map[1:1 3:3] [1 3]}
+	   -1
+	   {2 map[3:3 4:4] [3 4]}
+	   -1
+	   3
+	   4
+	   3
+	   {2 map[4:4] [3 4]}
+	   -1
+	*/
 }
