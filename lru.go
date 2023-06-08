@@ -26,11 +26,17 @@ func (this *LRUCache) Get(key int) int {
 	}
 	return -1
 }
+func (this *LRUCache) Delete(key int) {
+	delete(this.cache, key)
+	fmt.Println("deleted")
+}
 
 func main() {
 	c := Constructor(2)
 	c.Put(1, 1)
 	fmt.Println(c)
 	fmt.Println(c.Get(1))
+	c.Delete(1)
+	//fmt.Println(c.Delete(1))
 	fmt.Println("It works")
 }
