@@ -16,8 +16,14 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+func (this *LRUCache) Put(key int, value int) {
+	this.cache[key] = value
+}
+
 func main() {
 	c := Constructor(2)
+	fmt.Println(c)
+	c.Put(1, 1)
 	fmt.Println(c)
 	fmt.Println("It works")
 }
