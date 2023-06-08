@@ -29,8 +29,8 @@ func (this *LRUCache) Get(key int) int {
 
 func main() {
 	c := Constructor(2)
-	fmt.Println(c)
 	c.Put(1, 1)
 	fmt.Println(c)
+	fmt.Println(c.Get(1))
 	fmt.Println("It works")
 }
