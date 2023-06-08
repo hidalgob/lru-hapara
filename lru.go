@@ -16,6 +16,15 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+func remove(slice []int, s int) []int {
+	for i, v := range slice {
+		if v == s {
+			return append(slice[:i], slice[i+1:]...)
+		}
+	}
+	return slice
+}
+
 func (c *LRUCache) Put(key int, value int) {
 	if len(c.keys) >= c.capacity {
 		oldkey := c.keys[0]
@@ -28,6 +37,7 @@ func (c *LRUCache) Put(key int, value int) {
 
 func (c *LRUCache) Get(key int) int {
 	if val, ok := c.cache[key]; ok {
+		c.keys = remove(c.keys, key)
 		c.keys = append(c.keys, key)
 		return val
 	}
@@ -52,10 +62,11 @@ func main() {
 	fmt.Println(c)
 	c.Put(3, 3)
 	fmt.Println(c.Get(2))
+	fmt.Println(c.Get(2))
 	fmt.Println(c)
 	c.Put(4, 4)
 	fmt.Println(c.Get(2))
-
+	fmt.Println(c.Get(2))
 	fmt.Println(c)
 	fmt.Println("Exiting")
 }
