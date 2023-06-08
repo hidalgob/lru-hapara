@@ -18,10 +18,12 @@ func Constructor(capacity int) LRUCache {
 
 func (this *LRUCache) Put(key int, value int) {
 	this.cache[key] = value
+	this.keys = append(this.keys, key)
 }
 
 func (this *LRUCache) Get(key int) int {
 	if val, ok := this.cache[key]; ok {
+		this.keys = append(this.keys, key)
 		return val
 	}
 	return -1
