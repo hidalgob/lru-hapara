@@ -27,9 +27,12 @@ func (this *LRUCache) Get(key int) int {
 	return -1
 }
 
-func (this *LRUCache) Delete(key int) {
-	delete(this.cache, key)
-	fmt.Println("deleted")
+func (this *LRUCache) Delete(key int) int {
+	if val, ok := this.cache[key]; ok {
+		delete(this.cache, key)
+		return val
+	}
+	return -1
 }
 
 func main() {
